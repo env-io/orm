@@ -215,6 +215,21 @@ func (o querySet) SetCond(cond *Condition) QuerySeter {
 	return &o
 }
 
+// add condition expression to QuerySeter.
+func (o querySet) Search(expr string, fields ...string) QuerySeter {
+	if o.cond == nil {
+		o.cond = NewCondition()
+	}
+
+	cond := NewCondition()
+	for _, f := range fields {
+		cond = cond.Or(fmt.Sprintf("%s__icontains", f), expr)
+	}
+
+	o.cond = o.cond.AndCond(cond)
+	return &o
+}
+
 // get condition from QuerySeter
 func (o querySet) GetCond() *Condition {
 	return o.cond

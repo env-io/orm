@@ -380,6 +380,12 @@ type QuerySeter interface {
 	// for example:
 	//  o.QueryTable("user").Filter("uid", uid).ForUpdate().All(&users)
 	ForUpdate() QuerySeter
+	// add condition expression to QuerySeter.
+	// for example:
+	//	search string on username == 'slene'
+	//	qs.Search("abcd", "name", "email")
+	//	sql : where (name like '%abcd%' or email like '%abcd%')
+	Search(string, ...string) QuerySeter
 	// return QuerySeter execution result number
 	// for example:
 	//	num, err = qs.Filter("profile__age__gt", 28).Count()
