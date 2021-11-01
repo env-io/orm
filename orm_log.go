@@ -70,7 +70,7 @@ func debugLogQueies(alias *alias, operaton, query string, t time.Time, err error
 		logMap["alias"] = alias
 		logMap["operaton"] = operaton
 		logMap["error"] = err
-		logMap["caller"] = ormCaller(4)
+		logMap["caller"] = ormCaller(5)
 
 		LogFunc(logMap)
 	} else {
