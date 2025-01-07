@@ -133,6 +133,10 @@ func (d *DoNothingQuerySetter) ForUpdate() orm.QuerySeter {
 	return d
 }
 
+func (d *DoNothingQuerySetter) Search(s string, params ...string) orm.QuerySeter {
+	return d
+}
+
 func (d *DoNothingQuerySetter) Count() (int64, error) {
 	return 0, nil
 }
